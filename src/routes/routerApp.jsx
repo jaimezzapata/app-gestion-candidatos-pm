@@ -22,18 +22,18 @@ export let routerApp = [
     path: "/dashboard/",
     element: <Dashboard />,
     children: [
-        {
-            path: "board/",
-            element: <Board />
-        },
-        {
-            path: "candidates/",
-            element: <Candidates />
-        },
-        {
-            path: "offers/",
-            element: <Offers />
-        }
-    ]   
+      {
+        path: "board/",
+        element: <Board />,
+      },
+      {
+        path: "candidates/",
+        element: <Candidates />,
+      },
+      {
+        path: "offers/",
+        element: <Offers />,
+      },
+    ],
   },
 ];

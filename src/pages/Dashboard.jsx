@@ -1,4 +1,5 @@
 import Sidebar from "../components/Sidebar";
+import { Outlet } from "react-router-dom";
 const Dashboard = () => {
   return (
     <div className="min-h-screen bg-white text-slate-900">
@@ -30,6 +31,7 @@ const Dashboard = () => {
                 </button>
               </div>
             </header>
+            <Outlet />
           </div>
         </main>
       </div>
