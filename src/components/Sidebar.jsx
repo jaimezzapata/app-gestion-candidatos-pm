@@ -1,34 +1,53 @@
-import { redirectAlert } from "../helpers/alerts"
-import { getLocalStorage, removeLocalStorage } from "../helpers/local-storage"
+import { redirectAlert } from "../helpers/alerts";
+import { getLocalStorage, removeLocalStorage } from "../helpers/local-storage";
+import { Link } from "react-router-dom";
 
 const Sidebar = () => {
-  let user = JSON.parse(getLocalStorage("user"))
-  let initials = user.fullName.split(" ").map((item) => item[0]).join("")
+  let user = JSON.parse(getLocalStorage("user"));
+  let initials = user.fullName
+    .split(" ")
+    .map((item) => item[0])
+    .join("");
   function logout() {
-    removeLocalStorage("user")
-    redirectAlert("Cerrando Sesion", "Será redireccionado al login", "/login", "info")
+    removeLocalStorage("user");
+    redirectAlert(
+      "Cerrando Sesion",
+      "Será redireccionado al login",
+      "/login",
+      "info",
+    );
   }
   return (
     <aside className="flex h-screen flex-col border-r border-slate-200 bg-white">
       <div className="border-b border-slate-200 px-5 py-5">
         <div className="flex items-center gap-3">
           <div className="grid h-10 w-10 place-items-center rounded-xl bg-blue-600/10 ring-1 ring-blue-700/15">
-            <span className="text-sm font-semibold text-blue-800">{initials}</span>
+            <span className="text-sm font-semibold text-blue-800">
+              {initials}
+            </span>
           </div>
           <div className="leading-tight">
-            <p className="text-sm font-semibold tracking-tight text-blue-900">{user.fullName}</p>
+            <p className="text-sm font-semibold tracking-tight text-blue-900">
+              {user.fullName}
+            </p>
             <p className="text-xs text-slate-500">{user.role}</p>
           </div>
         </div>
       </div>
 
       <nav className="flex flex-1 flex-col gap-2 px-3 py-4 text-sm">
-        <div className="cursor-pointer rounded-xl bg-blue-50 px-3 py-2 font-medium text-blue-800 ring-1 ring-blue-700/10">
+        <Link to="Board/" className="cursor-pointer rounded-xl bg-blue-50 px-3 py-2 font-medium text-blue-800 ring-1 ring-blue-700/10">
           Tablero
-        </div>
-        <div className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">Usuarios</div>
-        <div className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">Ofertas</div>
-        <div className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">Postulantes</div>
+        </Link>
+      //*  <Link className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">
+         //* Usuarios
+     //*   </Link>
+        <Link to="Offers/" className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">
+          Ofertas
+        </Link>
+        <Link to="Candidates/" className="cursor-pointer rounded-xl px-3 py-2 text-slate-700 hover:bg-slate-50">
+          Postulantes
+        </Link>
 
         <button
           onClick={logout}
@@ -39,7 +58,7 @@ const Sidebar = () => {
         </button>
       </nav>
     </aside>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;
